@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "install": "electron-rebuild",
-    "build-win":"electron-packager ./app edc_connect --overwrite --asar=true --platform=win32 --arch=ia32 --app-version=0.0.1 --out=dist --icon=assets/icon/okdev.ico"
+    "build-win": "electron-packager ./app/ edc_connect --overwrite --asar=true --platform=win32 --arch=x64 --app-version=0.0.1 --out=dist --icon=assets/icon/okdev.ico"
   },
   "repository": {
     "type": "git",
@@ -22,11 +22,12 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^1.4.1",
+    "electron": "^1.8.8",
     "electron-packager": "^14.0.1",
     "electron-rebuild": "^1.4.0"
   },
   "dependencies": {
+    "buffer-split": "^1.0.0",
     "data-table": "^2.0.0",
     "nconf": "^0.10.0",
     "serialport": "^7.1.5",
