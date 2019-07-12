@@ -12,7 +12,7 @@ document.getElementById("edc-start").addEventListener("click", function(e) {
 });
 
 var connectEdc = function() {
-    const port = new serialport("/dev/tty.ENDOSLP11-JL_SPP-3", {
+    const port = new serialport("/dev/tty.usbmodem14401", {
         baudRate: 9600,
         parity: "none",
         stopBits: 1,
@@ -22,23 +22,12 @@ var connectEdc = function() {
       port.on("error", function(err) {
         log.error(err.message);
         console.log("Error: ", err.message);
-        reconnectEdc();
+        // reconnectEdc();
       });
 
       port.on("close", function() {
         log.info("Close Connect");
-        reconnectEdc();
-      });
-      
-      //write message string
-      port.write("main screen turn on", function(err) {
-        if (err) {
-          log.error(err.message);
-          return console.log("Error on write: ", err.message);
-        }
-      
-        log.info("send complte");
-        console.log("message written");
+        // reconnectEdc();
       });
       
       //write message Buffer
@@ -59,9 +48,9 @@ var connectEdc = function() {
       });
         
       //read data
-    1 // Switches the port into "flowing mode"
+      // Switches the port into "flowing mode"
       port.on("data", function(data) {
-          log.data_receive(data);
+          log.info(data);
           console.log("Data:", data);
           checkReceiveBuffer(data);
       });

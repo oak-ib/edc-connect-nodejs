@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "install": "electron-rebuild"
+    "install": "electron-rebuild",
+    "build-win":"electron-packager ./app edc_connect --overwrite --asar=true --platform=win32 --arch=ia32 --app-version=0.0.1 --out=dist --icon=assets/icon/okdev.ico"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^1.4.1",
+    "electron-packager": "^14.0.1",
     "electron-rebuild": "^1.4.0"
   },
   "dependencies": {
