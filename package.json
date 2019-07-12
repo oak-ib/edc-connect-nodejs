@@ -1,5 +1,5 @@
 {
-  "name": "electron-serialport",
+  "name": "edc-connect-nodejs",
   "version": "1.0.1",
   "description": "A minimal Electron application with node serialport",
   "main": "main.js",
@@ -26,6 +26,8 @@
   },
   "dependencies": {
     "data-table": "^2.0.0",
-    "serialport": "^4.0.7"
+    "nconf": "^0.10.0",
+    "serialport": "^7.1.5",
+    "simple-node-logger": "^18.12.23"
   }
 }
