@@ -11,7 +11,6 @@ serialport.list((err, ports) => {
   }
 
   if (ports.length === 0) {
-    log.info("No ports discovered");
     document.getElementById("error").textContent = "No ports discovered";
   }
 
