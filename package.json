@@ -1,25 +1,25 @@
 {
   "name": "edc-connect-nodejs",
-  "version": "1.0.1",
-  "description": "A minimal Electron application with node serialport",
+  "version": "0.1.0",
+  "description": "A minimal Electron application with node serialport connect edc",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "install": "electron-rebuild",
-    "build-win": "electron-packager ./app/ edc_connect --overwrite --asar=true --platform=win32 --arch=x64 --app-version=0.0.1 --out=dist --icon=assets/icon/okdev.ico"
+    "build-win64": "electron-packager . edc_connect --overwrite --asar --platform=win32 --arch=x64 --app-version=0.1.0 --out=dist --icon=assets/icon/okdev.ico",
+    "build-win32": "electron-packager . edc_connect --overwrite --asar --platform=win32 --arch=ia32 --app-version=0.1.0 --out=dist --icon=assets/icon/okdev.ico"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:johnny-five-io/electron-serialport.git"
+    "url": "git@github.com:zokemoke/edc-connect-nodejs.git"
   },
   "keywords": [
     "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "edc",
+    "serialport",
+    "his"
   ],
-  "author": "GitHub",
+  "author": "Oak Isarapong",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^1.8.8",
@@ -29,8 +29,8 @@
   "dependencies": {
     "buffer-split": "^1.0.0",
     "data-table": "^2.0.0",
-    "nconf": "^0.10.0",
     "serialport": "^7.1.5",
-    "simple-node-logger": "^18.12.23"
+    "simple-node-logger": "^18.12.23",
+    "socket.io-client": "^2.2.0"
   }
 }

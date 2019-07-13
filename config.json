@@ -1,3 +1,4 @@
 {
-    "portName" : "COM1"
+    "portName" : "/dev/tty.usbmodem14401",
+    "socket-server" : "http://localhost:3000"
 }

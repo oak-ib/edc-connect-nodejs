@@ -1,19 +1,9 @@
 const serialport = require("serialport");
 const createTable = require("data-table");
-const log = require("./logger");
-const nconf = require("nconf");
-nconf
-  .argv()
-  .env()
-  .file({ file: "config.json" });
-
-nconf.set("portName", "COM6");
-console.log(nconf.get("portName"));
+const edc = require("./edc-connect");
 
 serialport.list((err, ports) => {
-  console.log("ports", ports);
   if (err) {
-    log.info(err.message);
     document.getElementById("error").textContent = err.message;
     return;
   } else {
@@ -35,4 +25,8 @@ serialport.list((err, ports) => {
   );
   ports.forEach(port => table.write(port));
   table.end();
+});
+
+document.getElementById("edc-start").addEventListener("click", function(e) {
+  edc.connectEdc();
 });

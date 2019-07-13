@@ -1,6 +1,7 @@
 const electron = require('electron')
 // Module to control application life.
 const app = electron.app
+const menu = electron.Menu;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 
@@ -26,12 +27,30 @@ function createWindow () {
   mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
-  mainWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    mainWindow = null
+  mainWindow.on('closed', function (event) {
+    if(!application.isQuiting){
+      event.preventDefault();
+      mainWindow.hide();
+    }
+
+    return false;
+    // mainWindow = null
   })
+
+  mainWindow.on('minimize',function(event){
+    event.preventDefault();
+    mainWindow.hide();
+  });
+
+  var contextMenu = menu.buildFromTemplate([
+    { label: 'Show App', click:  function(){
+        mainWindow.show();
+    } },
+    { label: 'Quit', click:  function(){
+        application.isQuiting = true;
+        application.quit();
+    } }
+  ]);
 }
 
 // This method will be called when Electron has finished

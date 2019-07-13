@@ -16,12 +16,25 @@
 
     <div>
       <button id="edc-start">Connect</button>
-      <button id="edc-test">Test Convert</button>
+      <button id="edc-his">Test Send HIS</button>
     </div>
   </body>
 
   <script>
+    var portName = "";
+    var socket_server = "";
+
+    (function readConfig() {
+        // Synchronous read
+        var fs = require('fs');
+        let data = fs.readFileSync('config.json');
+        let jsonData = JSON.parse(data.toString());
+        console.log(jsonData);
+        portName = jsonData['portName'];
+        socket_server = jsonData['socket-server'];
+    })();
+
+
     require('./renderer.js');
-    require('./edc-connect.js');
   </script>
 </html>
