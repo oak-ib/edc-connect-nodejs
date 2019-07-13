@@ -6,15 +6,16 @@
   </head>
   <body>
     <h1>EDC Connect HIS</h1>
+    <h1>
     We are using Node.js <script>document.write(process.versions.node)</script>,
     Chromium <script>document.write(process.versions.chrome)</script>,
     Electron <script>document.write(process.versions.electron)</script>,
     and Serialport <script>document.write(require('serialport/package').version)</script>.
-
+    </h1>
     <div id="error"></div>
-    <div id="ports"></div>
+    <h4 id="ports"></h4>
 
-    <div>
+    <div style="margin: 15px 15px">
       <button id="edc-start">Connect</button>
       <button id="edc-his">Test Send HIS</button>
     </div>
