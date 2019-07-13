@@ -1,61 +1,56 @@
-const electron = require('electron')
-// Module to control application life.
-const app = electron.app
-const menu = electron.Menu;
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow
+const { app, BrowserWindow, Tray, Menu } = require('electron');
+const path = require('path');
+const url = require('url');
+var iconpath = path.join(__dirname, 'assets/icon/okdev.ico');
+let win;
 
-const path = require('path')
-const url = require('url')
-
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
-
-function createWindow () {
+function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({
-    width: 1200, 
+  win = new BrowserWindow({
+    width: 1200,
     height: 600,
     title: "EDC_Connect",
-    icon:'./assets/icon/okdev.ico'
+    icon: iconpath
   })
 
-  // and load the index.html of the app.
-  mainWindow.loadURL(url.format({
+  win.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true
   }))
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  win.webContents.openDevTools()
 
-  // Emitted when the window is closed.
-  mainWindow.on('closed', function (event) {
-    if(!application.isQuiting){
-      event.preventDefault();
-      mainWindow.hide();
+  var appIcon = new Tray(iconpath)
+
+  var contextMenu = Menu.buildFromTemplate([
+    {
+      label: 'Show App', click: function () {
+        win.show()
+      }
+    },
+    {
+      label: 'Quit', click: function () {
+        app.isQuiting = true
+        app.quit()
+      }
     }
+  ])
 
-    return false;
-    // mainWindow = null
+  appIcon.setContextMenu(contextMenu)
+
+  win.on('close', function (event) {
+    win = null
   })
 
-  mainWindow.on('minimize',function(event){
-    event.preventDefault();
-    mainWindow.hide();
-  });
+  win.on('minimize', function (event) {
+    event.preventDefault()
+    win.hide()
+  })
 
-  var contextMenu = menu.buildFromTemplate([
-    { label: 'Show App', click:  function(){
-        mainWindow.show();
-    } },
-    { label: 'Quit', click:  function(){
-        application.isQuiting = true;
-        application.quit();
-    } }
-  ]);
+  win.on('show', function () {
+    appIcon.setHighlightMode('always')
+  })
+
 }
 
 // This method will be called when Electron has finished
@@ -73,7 +68,7 @@ app.on('window-all-closed', function () {
 app.on('activate', function () {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-  if (mainWindow === null) {
+  if (win === null) {
     createWindow()
   }
 })
