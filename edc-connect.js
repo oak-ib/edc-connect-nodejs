@@ -20,13 +20,13 @@ port.on("error", function (err) {
   log.error(err.message);
   console.log("Error: ", err.message);
   document.getElementById("text-connect").innerHTML = "Is Port " + portName + " Disconnect!!! check port config";
-  // reconnectEdc();
+  reconnectEdc();
 });
 
 port.on("close", function () {
   log.info("Close Connect");
   document.getElementById("text-connect").innerHTML = "Is Port " + portName + " Disconnect!!! check port config";
-  // reconnectEdc();
+  reconnectEdc();
 });
 
 //read data
