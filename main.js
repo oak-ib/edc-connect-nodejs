@@ -15,10 +15,12 @@ function createWindow() {
 
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
+    protocol: 'file:',
+    slashes: true
   }))
 
   // Open the DevTools.
-  // win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   var appIcon = new Tray(iconpath)
 
