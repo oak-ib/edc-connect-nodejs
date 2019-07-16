@@ -15,16 +15,18 @@ const portlist = function () {
       document.getElementById("error").textContent = "No ports discovered";
     }
 
-    const headers = Object.keys(ports[0]);
-    const table = createTable(headers);
-    tableHTML = "";
-    table.on("data", data => (tableHTML += data));
-    table.on(
-      "end",
-      () => (document.getElementById("ports").innerHTML = tableHTML)
-    );
-    ports.forEach(port => table.write(port));
-    table.end();
+    if (ports.length > 0) {
+      const headers = Object.keys(ports[0]);
+      const table = createTable(headers);
+      tableHTML = "";
+      table.on("data", data => (tableHTML += data));
+      table.on(
+        "end",
+        () => (document.getElementById("ports").innerHTML = tableHTML)
+      );
+      ports.forEach(port => table.write(port));
+      table.end();
+    }
   });
 }
 
