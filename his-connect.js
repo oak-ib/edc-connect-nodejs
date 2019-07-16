@@ -1,10 +1,12 @@
 const log = require("./logger");
 const io = require("socket.io-client");
+const ip = require('ip');
 let socket = io.connect(socket_server, {reconnect: true});
 
 socket.on('connect', function() {
     // Connected, let's sign-up for to receive messages for this room
-    socket.emit('room', ip_last_short);
+    let valIp = ip.address().split('.');
+    socket.emit('room', valIp[3]);
 });
 
 const onSocket = function(event) {

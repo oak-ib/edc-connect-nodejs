@@ -1,5 +1,4 @@
 {
     "portName" : "COM11",
-    "socket-server" : "http://localhost:3000",
-    "ip-last-short" : "1"
+    "socket-server" : "http://localhost:3000"
 }
