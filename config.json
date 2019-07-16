@@ -1,4 +1,4 @@
 {
     "portName" : "COM11",
-    "socket-server" : "http://localhost:3000"
+    "socket-server" : "http://backend.thaihis6.work:3000"
 }

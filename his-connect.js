@@ -6,6 +6,7 @@ let socket = io.connect(socket_server, {reconnect: true});
 socket.on('connect', function() {
     // Connected, let's sign-up for to receive messages for this room
     let valIp = ip.address().split('.');
+    log.info("IP", valIp);
     socket.emit('room', valIp[3]);
 });
 
